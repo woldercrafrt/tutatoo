@@ -12,16 +12,19 @@ public class Local {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombreLocal", length = 100)
-    private String nombreLocal;
+    @Column(name = "localID")
+    private int localID;
 
-    @Column(name = "direccion", length = 200)
+    @Column(name = "direccion")
     private String direccion;
 
-    @Column(name = "municipio", length = 100)
-    private String municipio;
+    @Column(name = "nombre", length = 100)
+    private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @OneToMany
+    @JoinColumn(name = "tatuadorID", nullable = false)
+    private Tatuador tatuador;
+
+    @ManyToMany(mappedBy = "local", cascade = CascadeType.ALL)
+    private List<Tatuador> tatuador;
 }

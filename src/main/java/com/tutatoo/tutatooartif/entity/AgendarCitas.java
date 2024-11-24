@@ -5,30 +5,21 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "publicacion")
-public class Publicacion {
+@Table(name = "AgendarCitas")
+public class AgendarCitas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "publicacioID")
-    private int publicacionID;
+    @Column(name = "citaID")
+    private int citaID;
 
-    @Column(name = "nombre", length = 100)
-    private String nombre;
+    @Column(name = "hora")
+    private String hora;
 
-    @Column(name = "comentarios")
-    private String comentarios;
-
-    @Column(name = "calificacion")
-    private int calificacion;
-
-    @Column(name = "descripcion")
-    private String descripcion;
-
-    @Column(name = "urlImagen", length = 255)
-    private String urlImagen;
+    @Column(name = "direccion")
+    private String direccion;
 
     @Column(name = "fecha")
     private String fecha;
@@ -39,10 +30,10 @@ public class Publicacion {
     @Column(name = "tatuadorID")
     private int tatuadorID;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "usuarioID", nullable = false)
     private Usuario usuario;
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "tatuadorID", nullable = false)
     private Tatuador tatuador;
 }

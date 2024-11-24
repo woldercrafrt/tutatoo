@@ -6,15 +6,15 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "tatuador")
+public class Tatuador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "usuarioID")
-    private int usuarioID;
+    @Column(name = "tatuadorID")
+    private int tatuadorID;
 
     @Column(name = "nombre", length = 100, unique = true, nullable = false)
     private String nombre;
@@ -25,6 +25,10 @@ public class Usuario {
     @Column(name = "contraseña", length = 255)
     private String contraseña;
 
-    @ManyToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "tatuador", cascade = CascadeType.ALL)
     private List<Publicacion> publicaciones;
+
+    @OneToMany
+    @JoinColumn(name = "localID", nullable = false)
+    private Local local;
 }
